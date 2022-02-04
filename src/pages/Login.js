@@ -55,12 +55,17 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={submitHandler}>
-        <h2>Sign up</h2>
+      <form className={styles.formcontainer} onSubmit={submitHandler}>
+        <h2 className={styles.header}>Sign up</h2>
 
-        <div>
+        <div className={styles.formfield}>
           <label htmlFor="username">Username</label>
           <input
+            className={
+              errors.username && touched.username
+                ? styles.uncompleted
+                : styles.forminput
+            }
             type="text"
             name="username"
             value={data.username}
@@ -74,9 +79,14 @@ const Login = () => {
           )}
         </div>
 
-        <div>
+        <div className={styles.formfield}>
           <label htmlFor="email">Email</label>
           <input
+            className={
+              errors.email && touched.email
+                ? styles.uncompleted
+                : styles.forminput
+            }
             type="email"
             name="email"
             value={data.email}
@@ -88,9 +98,14 @@ const Login = () => {
           {errors.email && touched.email && <span>{errors.email}</span>}
         </div>
 
-        <div>
+        <div className={styles.formfield}>
           <label htmlFor="password">Password</label>
           <input
+            className={
+              errors.password && touched.password
+                ? styles.uncompleted
+                : styles.forminput
+            }
             type="password"
             name="password"
             value={data.password}
@@ -104,9 +119,14 @@ const Login = () => {
           )}
         </div>
 
-        <div>
+        <div className={styles.formfield}>
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
+            className={
+              errors.confirmPassword && touched.confirmPassword
+                ? styles.uncompleted
+                : styles.forminput
+            }
             type="password"
             name="confirmPassword"
             value={data.confirmPassword}
@@ -120,7 +140,8 @@ const Login = () => {
           )}
         </div>
 
-        <div>
+        <div className={styles.formfield}>
+          <div className={styles.checkBoxContainer}>
           <label htmlFor="checkbox">I'm not a robbot</label>
           <input
             type="checkbox"
@@ -130,13 +151,14 @@ const Login = () => {
             onChange={changeHandler}
             onFocus={touchedHandler}
           />
+          </div>
 
           {errors.isAccepted && touched.isAccepted && (
             <span>{errors.isAccepted}</span>
           )}
         </div>
 
-        <div>
+        <div className={styles.formButtons}>
           <button type="submit">Sign up</button>
           <span>
             Already have an account? Login <a href="/">here</a>
