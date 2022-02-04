@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { validate } from "../components/Validate/validate";
  
 import styles from "./Login.module.css"
 
@@ -10,6 +11,13 @@ const Login = () => {
     confirmPassword : "" ,
     isAccepted : false
   })
+
+  const [errors , setErrors] = useState({})
+
+  useEffect(() => {
+    setErrors(validate(data))
+    console.log(errors);
+  } , [data])
 
   const changeHandler = (e) => {
     if (e.target.name === "isAccepted") {
