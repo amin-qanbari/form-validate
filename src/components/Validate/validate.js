@@ -1,14 +1,8 @@
-export const validate = data => {
+export const validate = (data , type)=> {
 
   const errors = {}
 
-  //username
-  if (!data.username) {
-    errors.username = "Username required"
-  }else {
-    delete errors.username
-  }
-
+  
   //email
   if (!data.email) {
     errors.email = "Email required"
@@ -17,7 +11,7 @@ export const validate = data => {
   } else {
     delete errors.email
   }
-
+  
   //password
   if (!data.password) {
     errors.password = "password required"
@@ -26,21 +20,37 @@ export const validate = data => {
   } else {
     delete errors.password
   }
+  
+  
 
-  //confirmPassword
-  if (!data.confirmPassword) {
-    errors.confirmPassword = "confirm password required"
-  } else if (data.confirmPassword !== data.password) {
-    errors.confirmPassword = "confirm password do not match"
-  } else {
-    delete errors.confirmPassword
-  }
+  if(type === "signin") {
+
+    //username
+    if (!data.username) {
+      errors.username = "Username required"
+    }else {
+      delete errors.username
+    }
+
+    
+
 
   //isAccepted
   if (!data.isAccepted) {
     errors.isAccepted = "please confirm that you are not a robot"
   }else{
     delete errors.isAccepted
+  }
+
+      //confirmPassword
+      if (!data.confirmPassword) {
+        errors.confirmPassword = "confirm password required"
+      } else if (data.confirmPassword !== data.password) {
+        errors.confirmPassword = "confirm password do not match"
+      } else {
+        delete errors.confirmPassword
+      }
+
   }
   
   return errors
